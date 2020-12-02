@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Gribesh/BlockchainApp-Solidity-SmartContracts/issues"
   },
-  "homepage": "https://github.com/Gribesh/BlockchainApp-Solidity-SmartContracts#readme"
+  "homepage": "https://github.com/Gribesh/BlockchainApp-Solidity-SmartContracts#readme",
+  "dependencies": {
+    "zeppelin-solidity": "1.12.0"
+  }
 }
