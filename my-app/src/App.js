@@ -1,12 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import Web3 from 'web3';
 
-function App() {
-  return (
-    <div>
-      Hello world
-    </div>
-  );
+class App extends Component {
+
+  constructor(props){
+    super(props)
+    this.web3 = new Web3(Web3.givenProvider || "ws://localhost:8546")
+  }
+
 }
-
 export default App;
