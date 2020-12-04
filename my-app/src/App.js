@@ -1,41 +1,25 @@
-import React, {
-  Component
-} from 'react';
-import Web3 from 'web3';
+import React from 'react';
+import './App.css';
+import Web3Info from './components/Web3Info.js';
 
+import { useWeb3 } from '@openzeppelin/network/react';
 
-class App extends Component {
-  
-  constructor(props) {
-    super(props)
-    this.web3 = new Web3(Web3.givenProvider || "ws://localhost:8546")
-    console.log(this.web3)
-    this.state = {
-      myAccountAddress: "My Contact Address"
-    }
-  }
-  
+const infuraProjectId = '95202223388e49f48b423ea50a70e336';
 
-  componentWillMount(){
-    this.web3 = new Web3(Web3.givenProvider || "ws://localhost:8546")
-    this.web3.eth.getAccounts().then(accounts =>{
-      console.log(accounts)
-      if(accounts[0]){
-        this.setState({myAccountAddress:accounts[0]})
-      }
-      else{
-        this.setState({ myAccountAddress: "undefined. Log in to Metamsk please!"})
-      }
-    })
-  }
+function App() {
 
-  render() {
-    return (
-      <div >
-      Hello World 
-    <div>Your address is {this.state.myAccountAddress}</div>
+  const web3Context = useWeb3(`wss://mainnet.infura.io/ws/v3/${infuraProjectId}`);
+
+  // const { networkId, networkName, providerName } = web3Context;
+
+  return (
+    <div className="App">
+      <div>
+        <h1>OpenZeppelin Network.js</h1>
+        <Web3Info title="Web3 Info" web3Context={web3Context} />
       </div>
-  )
+    </div>
+  );
 }
-}
+
 export default App;
