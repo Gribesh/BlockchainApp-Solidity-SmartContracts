@@ -22,9 +22,11 @@ class App extends Component {
       tokenSymbol: "???",
       decimals:0,
       numberOfTokenSend:0,
-      addressTo:''
+      addressTo:'',
+      msg:''
     }
     this.handleInputChange = this.handleInputChange.bind(this)
+    this.handleSubmit=this.handleSubmit.bind(this)
   }
   
 
@@ -70,13 +72,25 @@ class App extends Component {
     }) 
   }
 
+  handleSubmit(event){
+    event.preventDefault();
+    console.log("Button Clickced.")
+    const addressTo = this.state.addressTo
+    const decimals = this.state.decimals
+    const numberOfTokenSend = this.state.numberOfTokenSend * Math.pow(10,decimals)
+    const myAccount=this.state.myAccountAddress
+    console.log("Numbers of TOken to send " + numberOfTokenSend)
+    console.log("Address to: "+ addressTo)
+    console.log("")
+
+  }
   render() {
     return (
       <div >
       Hello World 
     <div>Your address is {this.state.myAccountAddress}</div>
     <div>Your have  {this.state.myAccountBalance} {this.state.tokenSymbol} tokens</div>
-    <form>
+    <form onSubmit= {this.handleSubmit}>
       <label>
         Send <input type="number" name="numberOfTokenSend"value={this.state.numberOfTokenSend} onChange={this.handleInputChange}/> tokens
       </label>
@@ -87,6 +101,7 @@ class App extends Component {
       </label>
       <input type="submit" value="Submit"/>
     </form>
+    <div>Message: {this.state.msg}</div>
       </div>
   )
 }
