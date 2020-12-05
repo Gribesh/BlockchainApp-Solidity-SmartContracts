@@ -20,8 +20,11 @@ class App extends Component {
       myAccountAddress: "My Contact Address",
       myAccountBalance: 0,
       tokenSymbol: "???",
-      decimals:0
+      decimals:0,
+      numberOfTokenSend:0,
+      addressTo:''
     }
+    this.handleInputChange = this.handleInputChange.bind(this)
   }
   
 
@@ -57,6 +60,16 @@ class App extends Component {
     })
   }
 
+  handleInputChange(event){
+    const target = event.target
+    const value = target.value
+    const name = target.name
+    console.log("Input"+ name+ " value has been changed to " + value);
+    this.setState({
+      [name]:value
+    }) 
+  }
+
   render() {
     return (
       <div >
@@ -64,7 +77,15 @@ class App extends Component {
     <div>Your address is {this.state.myAccountAddress}</div>
     <div>Your have  {this.state.myAccountBalance} {this.state.tokenSymbol} tokens</div>
     <form>
-
+      <label>
+        Send <input type="number" name="numberOfTokenSend"value={this.state.numberOfTokenSend} onChange={this.handleInputChange}/> tokens
+      </label>
+      <br/>
+      <br/>
+      <label>
+        To <input type="text" name="addressTo" value={this.state.addressTo} onChange={this.handleInputChange} /> address
+      </label>
+      <input type="submit" value="Submit"/>
     </form>
       </div>
   )
