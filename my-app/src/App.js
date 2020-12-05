@@ -83,6 +83,12 @@ class App extends Component {
     console.log("Address to: "+ addressTo)
     console.log("")
 
+    this.contract.methods.transfer(addressTo,numberOfTokenSend).send({from: myAccount}).on('transactionHash',function(hash){
+      this.setState({msg: "You will be able to find your txn here"+ hash})
+    }.bind(this)).on('error',function(error){
+      this.setState({msg: "Error Occured "+ error})
+    }.bind(this))
+
   }
   render() {
     return (
